@@ -9,7 +9,7 @@ import resolve from '@rollup/plugin-node-resolve';
 
 import livereload from 'rollup-plugin-livereload';
 
-import terser from '@rollup/plugin-terser';
+// import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
 
 //  Импортируем модули для работы с sass
