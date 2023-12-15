@@ -13,7 +13,7 @@ import resolve from '@rollup/plugin-node-resolve';
 
 import livereload from 'rollup-plugin-livereload';
 
-// import terser from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
 
 //  Импортируем модули для работы с sass
@@ -179,6 +179,9 @@ const rollupconfig = {
       livereload({
         watch: path.watch.liveReloadDir,
       }),
+    //  Если это не режим разработки,
+    //  то минимизируем файлы:
+    production && terser(),
     resolve({ browser: true }),
   ],
   watch: {
