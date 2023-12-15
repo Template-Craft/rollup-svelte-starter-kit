@@ -8,7 +8,7 @@
     "build": "rollup -c --no-sourcemap",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
-    "start": "sirv public -D"
+    "start": "sirv public -D --single"
   },
   "keywords": [
     "Svelte",
@@ -69,6 +69,7 @@
     "sass": "^1.69.5",
     "sirv-cli": "^2.0.2",
     "svelte": "^4.2.8",
-    "svelte-preprocess": "^5.1.2"
+    "svelte-preprocess": "^5.1.2",
+    "svelte-routing": "^2.10.0"
   }
 }

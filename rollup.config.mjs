@@ -5,7 +5,7 @@ import os from 'node:os';
 import fs from 'node:fs';
 import chalk from 'chalk';
 
-import babel from '@rollup/plugin-babel';
+// import babel from '@rollup/plugin-babel';
 
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
@@ -25,8 +25,8 @@ import postCSSSortMediaQueries from 'postcss-sort-media-queries';
 import cssnano from 'cssnano';
 import sccnanoPresetAdvanced from 'cssnano-preset-advanced';
 
-//  Импортируем package.json
-export const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+//  Импортируем и парсим package.json
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
 //  Режимы:
 const production = !process.env.ROLLUP_WATCH;
@@ -67,7 +67,7 @@ export const sourceDir = './src';
 //  Пути до файлов:
 export const path = {
   source: {
-    svelte: `${sourceDir}**/*.svelte`,
+    svelte: ['node_modules/svelte-routing/**/*.svelte', `${sourceDir}/**/*.svelte`],
     bundleApp: `${sourceDir}/App.mjs`,
     //  Определяем пути до стилей (не испольуем расширение файлов!)
     stylesheets: [`${sourceDir}/assets/stylesheets`, `${sourceDir}/components`],
@@ -88,9 +88,9 @@ export const configs = {
   //  Режим карт исходников
   sourcemapState: !production ? true : false,
   //  Определяем конфигурацию Babel (дополнительно в ./src/ лежит файл .babelrc.json)
-  babelConfig: {
+  babel: {
     extension: ['.js', '.mjs', '.html', '.svelte'],
-    includes: ['src/**', 'src/modules/**', 'node_modules/svelte/**'],
+    includes: ['src/**', 'src/modules/**', 'node_modules/svelte/**', 'node_modules/svelte-routing/**'],
     excludes: ['node_modules/@babel/**'],
     helpers: 'bundled',
   },
@@ -156,12 +156,12 @@ const rollupconfig = {
       include: path.source.svelte,
       emitCss: true,
     }),
-    babel({
-      extensions: configs.babelConfig.extension,
-      include: configs.babelConfig.includes,
-      exclude: configs.babelConfig.excludes,
-      babelHelpers: configs.babelConfig.helpers,
-    }),
+    // babel({
+    //   extensions: configs.babel.extension,
+    //   include: configs.babel.includes,
+    //   exclude: configs.babel.excludes,
+    //   babelHelpers: configs.babel.helpers,
+    // }),
     //  Подключаем Sass/Scss
     rollupScss({
       //  путь и название файла при компиляции
