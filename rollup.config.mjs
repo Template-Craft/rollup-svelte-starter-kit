@@ -5,8 +5,6 @@ import os from 'node:os';
 import fs from 'node:fs';
 import chalk from 'chalk';
 
-// import babel from '@rollup/plugin-babel';
-
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
 import resolve from '@rollup/plugin-node-resolve';
@@ -70,7 +68,7 @@ export const path = {
     svelte: ['node_modules/svelte-routing/**/*.svelte', `${sourceDir}/**/*.svelte`],
     bundleApp: `${sourceDir}/App.mjs`,
     //  Определяем пути до стилей (не испольуем расширение файлов!)
-    stylesheets: [`${sourceDir}/assets/stylesheets`, `${sourceDir}/components`],
+    stylesheets: [`${sourceDir}/stylesheets`, `${sourceDir}/components`],
   },
   public: {
     bundleApp: `${publicDir}/build/bundle.js`,
@@ -87,13 +85,6 @@ export const path = {
 export const configs = {
   //  Режим карт исходников
   sourcemapState: !production ? true : false,
-  //  Определяем конфигурацию Babel (дополнительно в ./src/ лежит файл .babelrc.json)
-  babel: {
-    extension: ['.js', '.mjs', '.html', '.svelte'],
-    includes: ['src/**', 'src/modules/**', 'node_modules/svelte/**', 'node_modules/svelte-routing/**'],
-    excludes: ['node_modules/@babel/**'],
-    helpers: 'bundled',
-  },
   postCSSPluginsDev: [
     autoprefixer({
       cascade: true,
@@ -155,13 +146,8 @@ const rollupconfig = {
     svelte({
       include: path.source.svelte,
       emitCss: true,
+      preprocess: sveltePreprocess(),
     }),
-    // babel({
-    //   extensions: configs.babel.extension,
-    //   include: configs.babel.includes,
-    //   exclude: configs.babel.excludes,
-    //   babelHelpers: configs.babel.helpers,
-    // }),
     //  Подключаем Sass/Scss
     rollupScss({
       //  путь и название файла при компиляции
@@ -171,7 +157,6 @@ const rollupconfig = {
       processor: () => (production ? postCSS(configs.postCSSPluginsProd) : postCSS(configs.postCSSPluginsDev)),
       watch: path.source.stylesheets,
     }),
-    sveltePreprocess(),
     json(),
     //  Следим за 'public' директорией и сообщай браузеру
     //  если были изменения не в режиме разработки

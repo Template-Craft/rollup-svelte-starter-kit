@@ -1,7 +1,7 @@
 {
   "name": "svelte-starter-kit",
   "version": "1.0.0",
-  "description": "Svelte + Rollup starter kit",
+  "description": "Rollup + Svelte SPA starter kit",
   "main": "rollup.config.mjs",
   "scripts": {
     "prebuild": "del-cli ./public/**/*.map ./public/build/**/*.map",
@@ -12,6 +12,8 @@
   },
   "keywords": [
     "Svelte",
+    "Svelte Routing",
+    "SPA",
     "Rollup",
     "Live-reload",
     "Starter kit"
@@ -27,10 +29,7 @@
       "last 6 Firefox versions",
       "last 6 Edge versions",
       "last 2 Samsung versions",
-      "Firefox ESR",
-      "Safari >= 11",
-      "iOS >= 11",
-      "ie 11"
+      "Firefox ESR"
     ],
     "javascripts": [
       "supports es6-module"
@@ -45,9 +44,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.23.6",
-    "@babel/preset-env": "^7.23.6",
-    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",

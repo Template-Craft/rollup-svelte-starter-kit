@@ -1,0 +1,6 @@
+// Управляем цветовой темой
+@mixin prefersColorScheme($value) {
+  @media (prefers-color-scheme: #{$value}) {
+    @content;
+  }
+}
