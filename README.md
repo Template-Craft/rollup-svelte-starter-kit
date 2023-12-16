@@ -5,6 +5,9 @@
 > [!NOTE]
 > В инструмент уже включён плагин для роутинга (перенаправления) - [Svelte Routing](https://github.com/EmilTholin/svelte-routing)
 
+> [!WARNING]
+> =В ИНСТРУМЕНТ НЕ ВКЛЮЧЁН BABEL - ДЛЯ ТРАНСПИЛЯЦИИ НОВОГО СИНТАКСИСА JAVA SCRIPT КОДА В СТАРЫЙ, ПРЕДПОЛАГАЕТСЯ ЧТО ПРИЛОЖЕНИЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ В СОВРЕМЕННЫХ БРАУЗЕРАХ. BABEL ОТКЛЮЧЁН ИЗ-ЗА КОНФЛИКТА С ПЛАГИНОМ ДЛЯ РОУТИНГА.=
+
 ## Что внутри?
 
 | Зависимости                                                                                    | Описание                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -79,68 +82,74 @@ npm run dev
 
 #### Запуск режимов
 
+_Запускает локальный сервер для разработки вашего SPA_
+
 ```bash
 npm run dev
 ```
 
-_Запускает локальный сервер для разработки вашего SPA_
+---
+
+_Запускает режим сборки проекта, перед сборкой запустит команду `prebuild`_
 
 ```bash
 npm run build
 ```
 
-_Запускает режим сборки проекта, перед сборкой запустит команду `prebuild`_
+---
+
+_Команда запускается автоматически, во время запуска команды `build`. Она необходима для очистки директории `public` от исходных карт_
 
 ```bash
 npm run prebuild
 ```
 
-_Команда запускается автоматически, во время запуска команды `build`. Она необходима для очистки директории `public` от исходных карт_
+---
+
+_Команда для слежения за файлами в вашем проекте, включена в команду `dev`_
 
 ```bash
 npm run watch
 ```
 
-_Команда для слежения за файлами в вашем проекте, включена в команду `dev`_
+---
+
+_Команда для запуска локального сервера в режиме разработки включена в команду `dev`_
 
 ```bash
 npm run start
 ```
 
-_Команда для запуска локального сервера в режиме разработки включена в команду `dev`_
-
 #### Структура проекта
 
-```zsh
- .
-├──  .editorconfig
-├──  .gitignore
-├──  .prettierignore
-├──  .prettierrc
-├──  package.json
-├──  public
-│  └──  index.html
-├──  README.md
-├──  rollup.config.mjs
-└──  src
-   ├──  App.mjs
-   ├──  App.svelte
-   ├──  assets
-   │  └──  .gitkeep
-   ├──  components
-   │  └──  .gitkeep
-   ├──  modules
-   │  └──  .gitkeep
-   ├──  routes
-   │  ├──  About.svelte
-   │  └──  Home.svelte
-   └──  stylesheets
-      ├──  _mixins.scss
-      ├──  _var-collection.scss
-      └──  stylesheets.scss
+```bash
+project_dir
+├── .editorconfig
+├── .gitignore
+├── .kitpreview
+├── .prettierignore
+├── .prettierrc
+├── package.json
+├── public
+│  └── index.html
+├── README.md
+├── rollup.config.mjs
+└── src
+   ├── App.mjs
+   ├── App.svelte
+   ├── assets
+   │  └── .gitkeep
+   ├── components
+   │  └── .gitkeep
+   ├── modules
+   │  └── .gitkeep
+   ├── routes
+   │  ├── About.svelte
+   │  └── Home.svelte
+   └── stylesheets
+      ├── _mixins.scss
+      ├── _var-collection.scss
+      └── stylesheets.scss
 ```
 
 В директории `src` находятся все основные файлы, с котороми предполагается работа. При сборке проекта в дир-рии `public` появится файл стилей проекта и его java script код.
-
-> [!WARNING]
-> =В ИНСТРУМЕНТ НЕ ВКЛЮЧЁН BABEL - ДЛЯ ТРАНСПИЛЯЦИИ НОВОГО СИНТАКСИСА JAVA SCRIPT КОДА В СТАРЫЙ, ПРЕДПОЛАГАЕТСЯ ЧТО ПРИЛОЖЕНИЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ В СОВРЕМЕННЫХ БРАУЗЕРАХ. BABEL ОТКЛЮЧЁН ИЗ-ЗА КОНФЛИКТА С ПЛАГИНОМ ДЛЯ РОУТИНГА.=
