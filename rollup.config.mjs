@@ -1,4 +1,16 @@
-// configuration file from rollup bundle
+/*
+ *
+ * Конфигурационный файл для запуска проекта
+ * Используется: Rollup + Svelte + Svelte routing + Sirv-cli + Rollup-plugin-livereload
+ *
+ * ---
+ * ---
+ *
+ * @author  NИ <galaxyrobotix@gmail.com>
+ * @copyright NИ, 18.12.2023
+ *
+ */
+
 'use strict';
 
 import os from 'node:os';
@@ -147,6 +159,9 @@ const rollupconfig = {
       include: path.source.svelte,
       emitCss: true,
       preprocess: sveltePreprocess(),
+      // compilerOptions: {
+      //   dev: !production,
+      // },
     }),
     //  Подключаем Sass/Scss
     rollupScss({
