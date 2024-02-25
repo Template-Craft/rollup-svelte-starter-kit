@@ -176,7 +176,11 @@ const rollupconfig = {
     //  Если это не режим разработки,
     //  то минимизируем файлы:
     production && terser(),
-    resolve({ browser: true }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+      exportConditions: ['svelte'],
+    }),
     //  Следим за 'public' директорией и сообщай браузеру
     //  если были изменения не в режиме разработки
     !production &&
