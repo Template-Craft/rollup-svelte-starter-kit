@@ -158,7 +158,9 @@ const rollupconfig = {
     svelte({
       include: path.source.svelte,
       emitCss: true,
-      preprocess: sveltePreprocess(),
+      preprocess: sveltePreprocess({
+        sourceMap: configs.sourcemapState, // включение рабочих карт исходников
+      }),
       // compilerOptions: {
       //   dev: !production,
       // },
@@ -167,7 +169,6 @@ const rollupconfig = {
     rollupScss({
       //  путь и название файла при компиляции
       fileName: path.public.stylesheets,
-      sourceMap: configs.sourcemapState,
       sass: sass, // -> устанавливаем в качестве компилятора официальный Dart Sass
       processor: () => (production ? postCSS(configs.postCSSPluginsProd) : postCSS(configs.postCSSPluginsDev)),
       watch: path.source.stylesheets,
