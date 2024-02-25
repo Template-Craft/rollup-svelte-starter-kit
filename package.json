@@ -2,7 +2,7 @@
   "name": "svelte-starter-kit",
   "version": "1.0.0",
   "description": "Rollup + Svelte SPA starter kit",
-  "main": "rollup.config.mjs",
+  "main": "./public/index.html",
   "scripts": {
     "prebuild": "del-cli ./public/**/*.map ./public/build/**/*.map",
     "build": "rollup -c --no-sourcemap",

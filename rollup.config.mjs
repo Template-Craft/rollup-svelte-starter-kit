@@ -89,7 +89,7 @@ const path = {
     stylesheets: 'assets/stylesheets.css',
   },
   watch: {
-    liveReloadDir: 'public',
+    liveReloadDir: publicDir,
   },
 };
 
