@@ -42,7 +42,7 @@ const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 const production = !process.env.ROLLUP_WATCH;
 
 //  Вывод расширенной информации о приложении в консоль
-export const consoleInformer = () => {
+const consoleInformer = () => {
   return console.log(
     `
     ${chalk.bgYellow('########## * Informer * ##########')}
@@ -71,11 +71,11 @@ export const consoleInformer = () => {
 };
 
 //  Пути дир-рий:
-export const publicDir = './public';
-export const sourceDir = './src';
+const publicDir = './public';
+const sourceDir = './src';
 
 //  Пути до файлов:
-export const path = {
+const path = {
   source: {
     svelte: ['node_modules/svelte-routing/**/*.svelte', `${sourceDir}/**/*.svelte`],
     bundleApp: `${sourceDir}/App.mjs`,
@@ -94,7 +94,7 @@ export const path = {
 };
 
 //  Коллекция конфигураций для различных плагинов:
-export const configs = {
+const configs = {
   //  Режим карт исходников
   sourcemapState: !production ? true : false,
   postCSSPluginsDev: [
@@ -173,16 +173,16 @@ const rollupconfig = {
       watch: path.source.stylesheets,
     }),
     json(),
+    //  Если это не режим разработки,
+    //  то минимизируем файлы:
+    production && terser(),
+    resolve({ browser: true }),
     //  Следим за 'public' директорией и сообщай браузеру
     //  если были изменения не в режиме разработки
     !production &&
       livereload({
         watch: path.watch.liveReloadDir,
       }),
-    //  Если это не режим разработки,
-    //  то минимизируем файлы:
-    production && terser(),
-    resolve({ browser: true }),
   ],
   watch: {
     clearScreen: false,
