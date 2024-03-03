@@ -161,9 +161,11 @@ const rollupconfig = {
       preprocess: sveltePreprocess({
         sourceMap: configs.sourcemapState, // включение рабочих карт исходников
       }),
-      // compilerOptions: {
-      //   dev: !production,
-      // },
+      // раскоментировать, для работы с:
+      // -> https://github.com/sveltejs/svelte-devtools
+      compilerOptions: {
+        dev: !production,
+      },
     }),
     //  Подключаем Sass/Scss
     rollupScss({
