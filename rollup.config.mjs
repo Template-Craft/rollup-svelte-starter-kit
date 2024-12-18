@@ -43,7 +43,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 //  Вывод расширенной информации о приложении в консоль
 const consoleInformer = () => {
-  return console.log(
+  return console.table(
     `
     ${chalk.bgYellow('########## * Informer * ##########')}
 
